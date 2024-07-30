@@ -1,0 +1,49 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@eslint/js": "^9.8.0",
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.21",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
+    "eslint": "^9.8.0",
+    "eslint-config-import": "^0.13.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^7.0.0",
+    "eslint-plugin-standard": "^5.0.0",
+    "globals": "^15.8.0",
+    "nodemon": "^3.1.4",
+    "prettier": "^3.3.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4",
+    "typescript-eslint": "^7.18.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2"
+  },
+  "scripts": {
+    "start": "npx tsc -w",
+    "dev": "npx nodemon",
+    "lint": "npx eslint ./src --ext .ts",
+    "lint:fix": "npx eslint ./src --ext .ts --fix",
+    "build": "tsc && cp .env ./build/.env",
+    "prod": "node ./build/index.js",
+    "format": "npx prettier . --write",
+    "prepare": "npx husky install",
+    "check-types": "npx tsc --noEmit --pretty",
+    "check-lint": "npx eslint . --ext ts --ext tsx --ext js",
+    "check-format": "npx prettier . --check",
+    "test": "npx jest --detectOpenHandles"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npx pretty-quick --staged ng lint ng test",
+      "pre-push": "ng build --aot true"
+    }
+  }
+}
